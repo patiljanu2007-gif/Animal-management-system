@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+
+struct animal {
+    char ani_species[15];
+    int ani_age;
+    char ani_nutrition[15];
+};
+
+int main() {
+    struct animal ani[50], temp; 
+    int i, j, n;
+
+ 
+    printf("Enter number of animals: ");
+    scanf("%d", &n);
+
+   
+    for (i = 0; i < n; i++) {
+        printf("\nEnter species of animal %d: ", i + 1);
+        scanf("%s", ani[i].ani_species);
+
+        printf("Enter age of animal: ");
+        scanf("%d", &ani[i].ani_age);
+
+        printf("Enter nutrition of animal: ");
+        scanf("%s", ani[i].ani_nutrition);
+    }
+
+
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (ani[j].ani_age > ani[j + 1].ani_age) {
+                temp = ani[j];
+                ani[j] = ani[j + 1];
+                ani[j + 1] = temp;
+            }
+        }
+    }
+
+    
+    printf("\n--- Animal Details Sorted by Age (Ascending) ---\n");
+    for (i = 0; i < n; i++) {
+        printf("\nSpecies: %s", ani[i].ani_species);
+        printf("\nAge: %d", ani[i].ani_age);
+        printf("\nNutrition: %s\n", ani[i].ani_nutrition);
+    }
+
+    return 0;
+}
+ 
